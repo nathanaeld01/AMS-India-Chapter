@@ -1,0 +1,97 @@
+.gallery-ol {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+.gallery-expand {
+    display: none;
+    width: 60%;
+    height: auto;
+    position: fixed;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    margin-top: calc(-530px/2);
+    margin-left: calc(-912px/2);
+}
+.gallery-expand .cont {
+    background: #ececec;
+    padding: 15px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+.gallery-expand .gallery-top {
+    width: 100%;
+    display: none;
+    height: 85px;
+    position: absolute;
+    z-index: 1;
+    background: rgba(255, 255, 255, .65);
+    top: 0;
+    left: 0;
+    text-indent: 20px;
+}
+.gallery-expand .close {
+    position: relative;
+    z-index: 2;
+}
+.gallery-expand .gallery-top h2 {
+    display: none;
+    margin: 0px;
+}
+.gallery-expand .image-place {
+    height: auto !important;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+}
+.gallery-expand .image-place img {
+    max-height: 500px;
+    width: auto;
+    margin: auto;
+}
+.gallery-expand .image-place i.fa-chevron-left {
+    font-size: 50px;
+    float: left;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 25px);
+}
+.gallery-expand .image-place i.fa-chevron-right {
+    font-size: 50px;
+    float: right;
+    position: absolute;
+    right: 0;
+    top: calc(50% - 25px);
+}
+.gallery-expand .image-place i {
+    opacity: .2;
+}
+.gallery-expand .image-place i:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+.gallery-item, .gallery-item .thumb {
+    overflow: hidden;
+}
+.gallery-item:hover {
+    cursor: pointer;
+}
+.gallery-item img {
+    transition: .2s;
+}
+.gallery-item:hover img {
+    transform: scale(1.10);
+    transition: .2s;
+}
+.gallery-item.col-md-3 {
+    padding: 1px !important;
+}

@@ -1,0 +1,179 @@
+/********
+CAROUSEL STYLING
+********/
+
+/***** Carousel *****/
+.carousel, .carousel .carousel-item, .carousel .carousel-item img {
+    height: 604px;
+}
+.carousel .carousel-item img {
+    object-fit: cover;
+}
+.carousel .carousel-indicators li {
+    width: 3px;
+    height: 3px;
+    margin-bottom: 18px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000;
+    border: 5px solid #fff;
+    opacity: 1;
+    transition: opacity .6s ease;
+    border-radius: 50px;
+    transition: .3s;
+}
+.carousel .carousel-indicators li:not(.active) {
+    opacity: .5;
+    transition: .3s;
+}
+.carousel .carousel-indicators li:hover:not(.active) {
+    opacity: .8;
+    transition: .3s;
+}
+.carousel .carousel-timer {
+    height: 6px;
+    width: 100%;
+    max-width: 100%;
+    max-height: 6px;
+    position: absolute;
+    bottom: -1px;
+    z-index: 1;
+}
+.carousel .carousel-timer .carousel-bar {
+    max-width: 100%;
+    max-height: 6px;
+    background: rgba(255, 255, 255, .62);
+    height: 6px;
+}
+.carousel a.carousel-control-prev, .carousel a.carousel-control-next {
+    cursor: pointer;
+    background: #000;
+    background: rgba(0,0,0,.5);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    display: block;
+    z-index: 1000;
+    opacity: 0;
+    transition: .3s;
+    top: calc(50% - 20px);
+}
+.carousel a.carousel-control-prev span, .carousel a.carousel-control-next span {
+    margin: 10px auto;
+}
+.carousel:hover a.carousel-control-prev, .carousel:hover a.carousel-control-next {
+    opacity: 1;
+    transition: .3s;
+}
+.carousel .carousel-caption a.carousel-botton.btn-dark.btn-theme-colored2 {
+    transition: none 0s ease 0s;
+    text-align: inherit;
+    line-height: 21px;
+    border-width: 1px;
+    margin: 0px 10px 0px 0px;
+    padding: 12px 31px !important;
+    letter-spacing: 0px;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+/**** Carousel Captions ****/
+.carousel .carousel-item .carousel-caption {
+    position: absolute;
+    left: 12%;
+    min-width: 77%;
+    max-width: 77%;
+    text-align: left !important;
+    font-size: 27px;
+    line-height: 34px;
+    font-weight: 600;
+    color: #000;
+}
+.carousel-caption h3.text-theme-colored2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.125;
+    margin: 19px 0px 10px;
+}
+.carousel-caption h3.text-theme-colored2 span {
+    color: #000;
+    line-height: 36px;
+    border-width: 0px;
+}
+.caoursel-item:nth-child(2) .carousel-caption .text-colored-theme2, .carousel-item:nth-child(2) .carousel-caption span {
+    font-size: 20px !important;
+    transition: none 0s ease 0s;
+    text-align: inherit;
+    line-height: 18px;
+    border-width: 0px;
+    padding: 0px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    letter-spacing: 0px;
+}
+.carousel-item .carousel-caption .poem {
+    transition: none 0s ease 0s;
+    text-align: inherit;
+    line-height: 18px;
+    border-width: 0px;
+    margin: 0 0 0 15px;
+    padding: 0px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/**** Carousel Animations ****/
+.carousel .carousel-item .animate_animated {
+    animation-duration: 1s;
+}
+.carousel .carousel-item .animate__slideInDown {
+    animation: slideInDown;
+    animation-duration: 2s;
+}
+@@keyframes slideInDown {
+    0% {top: -400px;}
+    25% {top: -350px;}
+    50% {top: -300px;}
+    75% {top: -100px;}
+    100% {top: inherit;}
+}
+@media screen and (min-width: 768px) {
+    .carousel, .carousel .carousel-item, .carousel .carousel-item img {
+        height: 494px;
+    }
+    .carousel .carousel-item .carousel-caption {
+        position: absolute;
+        left: 5%;
+        min-width: 63.4%;
+        max-width: 63.4%;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .carousel, .carousel .carousel-item, .carousel .carousel-item img {
+        height: 550px;
+    }
+    .carousel .carousel-item .carousel-caption {
+        position: absolute;
+        left: 7.5%;
+        min-width: 56.3%;
+        max-width: 56.3%;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .carousel, .carousel .carousel-item, .carousel .carousel-item img {
+        height: 550px;
+    }
+    .carousel .carousel-item .carousel-caption {
+        line-height: 38px;
+        font-size: 21px;
+        position: absolute;
+        left: 11.5%;
+        min-width: 56.3%;
+        max-width: 56.3%;
+    }
+    .carousel-caption h3.text-theme-colored2 span {
+        line-height: 47px;
+    }
+}

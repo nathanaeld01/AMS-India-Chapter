@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!-- saved from url=(0223)https://cdn.razorpay.com/static/embed_btn/embed.html?url=https%3A%2F%2Fpages.razorpay.com%2Fpl_FwNkgvz1U0nBxV%2Fview&text=Support%20Us&color=%23528FF0&size=large&referrer=https%3A%2F%2Fwww.amsindiachapter.in%2F26-indien.php -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Embed Button</title>
+  <style>
+    body {
+      padding: 10px;
+    }
+    #rzp-btn {
+      box-sizing: border-box;
+      position: relative;
+      display: block;
+      min-height: 38px;
+      padding: 10px;
+      line-height: 18px;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: Lato, Muli, -apple-system, BlinkMacSystemFont, Arial,
+        sans-serif;
+      word-break: break-word;
+      border-radius: 2px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+      z-index: 2;
+      text-decoration: none;
+    }
+    #rzp-logo {
+      margin-top: 4px;
+      text-align: center;
+    }
+    .small {
+      width: 120px;
+    }
+    .medium {
+      width: 180px;
+    }
+    .large {
+      width: 240px;
+    }
+  </style></head>
+  
+  <body>
+    <span id="rzp-root">
+      <a onclick="trackOnClick()" id="rzp-btn" target="_blank" href="https://pages.razorpay.com/pl_FwNkgvz1U0nBxV/view" class="large" style="background-color: rgb(82, 143, 240);">Support Us</a>
+      <div id="rzp-logo" class="large">
+        <img height="16px" src="./powered_by_razorpay.png">
+      </div>
+    </span>
+    <script async="" src="./analytics.js.download"></script><script async="" defer="" src="./bundle.js.download" onload="initAnalytics()"></script>
+    <script>
+      var $rzpbtn = document.getElementById('rzp-btn');
+      var queryObj = queryParamsToObj();
+
+      function noop() {}
+
+      window.rzpQ = {
+        interaction: noop,
+        push: noop,
+        now: function() {
+          return window.rzpQ;
+        },
+        defineEventModifiers: noop,
+        paymentButton: function() {
+          return window.rzpQ;
+        },
+      };
+
+      function queryParamsToObj() {
+        var paramsArray = location.search.substr(1).split('&');
+        var queryObj = {};
+        for (var i = 0; i < paramsArray.length; i++) {
+          var paramTuple = paramsArray[i].split('=');
+          queryObj[paramTuple[0]] = decodeURIComponent(paramTuple[1]);
+        }
+        return queryObj;
+      }
+
+      function modifyButtonStyles(opts) {
+        $rzpbtn.setAttribute('href', opts.url);
+        $rzpbtn.classList.add(opts.size);
+        $rzpbtn.style.backgroundColor = opts.color;
+        $rzpbtn.innerText = opts.text;
+
+        const $rzplogo = document.getElementById('rzp-logo');
+        $rzplogo.classList.add(opts.size);
+      }
+
+      function isAllowedURL(url) {
+        if (!url) return false;
+
+        var rzp_io_rgx = /^(https?:\/\/)?rzp\.io\/[l|t]\/[\w\d]+$/;
+        var pages_rzp_rgx = /^(https?:\/\/)?(www\.)?(pages\.razorpay\.com).+$/;
+
+        return rzp_io_rgx.test(url) || pages_rzp_rgx.test(url);
+      }
+
+      function init() {
+        var $root = document.getElementById('rzp-root');
+
+        // Assign data to variables from query object
+        var opts = {
+          url: queryObj.url, // Payment Page URL
+          text: queryObj.text || 'Pay Now',
+          size: queryObj.size || 'medium',
+          color: queryObj.color || '#5590f0',
+        };
+
+        /*
+          Error and quit rendering if:
+          1. No payment url is passed
+          or
+          2. Payment url is not a valid rzp.io URL
+        */
+        if (!isAllowedURL(opts.url)) {
+          $root.remove();
+          document.write(
+            'Valid Razorpay payment url is needed for embed button'
+          );
+          return;
+        }
+
+        modifyButtonStyles(opts);
+      }
+
+      function initAnalytics() {
+        analytics.init(['ga', 'lj'], {
+          lj: '96df432a283745908a06f711acd9e5eb',
+        });
+
+        if (analytics.createQ) {
+          window.rzpQ = analytics.createQ({ pollFreq: 100 });
+        }
+
+        const eventCategory = 'Dashboard - Embed Button';
+
+        var label = JSON.stringify({
+          payment_url: queryObj.url,
+          text: queryObj.text,
+          size: queryObj.size,
+          color: queryObj.color,
+          referrer: queryObj.referrer,
+        });
+
+        analytics.track('ga', 'event', {
+          eventCategory: eventCategory,
+          eventAction: 'Payment Pages - Load',
+          eventLabel: label,
+        });
+
+        $rzpbtn.addEventListener('click', function() {
+          analytics.track('ga', 'event', {
+            eventCategory: eventCategory,
+            eventAction: 'Payment Pages - Click',
+            eventLabel: label,
+          });
+        });
+
+        var gimli_id = null;
+        var page_id = null;
+
+        if (isAllowedURL(queryObj.url)) {
+          // URL : https://pages.razorpay.com/${id}/view
+          // Short URL : https://rzp.io/i/krzgG93
+          var url_list = queryObj.url.split('/');
+
+          if (url_list[3].includes('pl_')) {
+            page_id = url_list[3];
+          } else {
+            gimli_id = url_list[4];
+          }
+        }
+
+        window.rzpQ.defineEventModifiers({
+          paymentButton: [
+            {
+              propertyName: 'event_type',
+              value: 'paymentpages',
+            },
+            {
+              propertyName: 'event_group',
+              value: 'payment-button',
+            },
+            {
+              propertyName: 'page_id',
+              value: page_id,
+            },
+            {
+              propertyName: 'gimli_id',
+              value: gimli_id,
+            },
+          ],
+        });
+
+        window.rzpQ.push(
+          window.rzpQ
+            .now()
+            .paymentButton()
+            .interaction('pp.settings.button_loaded', { mode: 'live' })
+        );
+      }
+
+      // Boot up
+      init();
+
+      function trackOnClick() {
+        window.rzpQ.push(
+          window.rzpQ
+            .now()
+            .paymentButton()
+            .interaction('pp.settings.button_clicked', { mode: 'live' })
+        );
+      }
+    </script>
+  
+
+</body></html>

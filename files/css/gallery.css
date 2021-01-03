@@ -85,13 +85,6 @@
 .gallery-item:hover {
     cursor: pointer;
 }
-.gallery-item img {
-    transition: .2s;
-}
-.gallery-item:hover img {
-    transform: scale(1.10);
-    transition: .2s;
-}
 .gallery-item.col-md-3 {
     padding: 1px !important;
 }
